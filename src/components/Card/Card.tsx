@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { randomData } from '../../utils/data';
 
 import './Card.css';
-import { addDoc } from '../../firebase';
 
 interface Card {
   questions: string;
@@ -24,8 +24,6 @@ const Card = () => {
 
   const fetchData = () => {
     setIsLoading(true);
-    console.log('asdf');
-    addDoc();
 
     randomData()
       .then((cardData) => {
