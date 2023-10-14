@@ -1,6 +1,7 @@
 .question-container {
   transform-style: preserve-3d;
   transition: transform 0.5s;
+  margin: 1rem;
 }
 
 .question-container:active {
