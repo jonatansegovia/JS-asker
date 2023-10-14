@@ -14,10 +14,6 @@ const Card = () => {
   const [data, setData] = useState<Card>();
   const [isLoading, setIsLoading] = useState(false);
 
-  /*   const test = await getFirebase(db);
-   */
-  /*   console.log(test);
-   */
   useEffect(() => {
     fetchData();
   }, []);
