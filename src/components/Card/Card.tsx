@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { DocumentData } from 'firebase/firestore';
 
 import { randomData } from '../../utils/data';
-
 import './Card.css';
 
 interface Card {
@@ -11,7 +11,7 @@ interface Card {
 
 const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [data, setData] = useState<Card>();
+  const [data, setData] = useState<DocumentData>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -41,11 +41,11 @@ const Card = () => {
       <div className="question-container" onClick={handleClick}>
         {!showAnswer ? (
           <div className="front">
-            <h1>{data?.questions}</h1>
+            <h1>{data && Object.keys(data)}</h1>
           </div>
         ) : (
           <div className="back" onClick={askNewData}>
-            <h1>{data?.answers}</h1>
+            <h1>{data && Object.values(data)}</h1>
           </div>
         )}
       </div>
