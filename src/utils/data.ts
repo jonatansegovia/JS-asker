@@ -16,11 +16,8 @@ export const answers = [
 
 export const randomData = async () => {
   const data = await getData();
-  const numberOfquestions = Object.keys(data).length / 2;
-  const position = Math.floor(Math.random() * numberOfquestions) + 1;
+  const numberOfquestions = data.length;
+  const position = Math.floor(Math.random() * numberOfquestions);
 
-  return {
-    questions: data[`q${position}`],
-    answers: data[`a${position}`],
-  };
+  return data[position];
 };
