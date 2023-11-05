@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
 import { DocumentData } from 'firebase/firestore';
 
+import Item from '../Item/Item';
 import { randomData } from '../../utils/data';
 import './Card.css';
-
-interface Card {
-  questions: string;
-  answers: string;
-}
 
 const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
@@ -40,13 +36,14 @@ const Card = () => {
     <main>
       <div className="question-container" onClick={handleClick}>
         {!showAnswer ? (
-          <div className="front">
-            <h1>{data && Object.keys(data)}</h1>
-          </div>
+          <Item name="front" data={data} />
         ) : (
-          <div className="back" onClick={askNewData}>
-            <h1>{data && Object.values(data)}</h1>
-          </div>
+          <Item
+            name="back"
+            data={data}
+            handleClick={askNewData}
+            isBack={showAnswer}
+          />
         )}
       </div>
     </main>
