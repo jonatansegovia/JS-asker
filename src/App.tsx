@@ -1,11 +1,16 @@
-import QuestionCard from './components/Card/Card';
+import { useState } from 'react';
 
+import QuestionCard from './components/Card/Card';
+import NewCard from './components/NewCard/NewCard';
 import './App.css';
 
 function App() {
+  const [editMode, setEditMode] = useState(false);
+
   return (
     <>
-      <QuestionCard />
+      <button onClick={() => setEditMode(!editMode)}>Create New Card</button>
+      {!editMode ? <QuestionCard /> : <NewCard />}
     </>
   );
 }
