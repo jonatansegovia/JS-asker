@@ -23,3 +23,27 @@ main {
   justify-content: center;
   align-items: center;
 }
+button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s, color 0.3s;
+}
+
+button {
+  display: block;
+  margin: 2rem auto;
+  background-color: #3498db;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #9900ff;
+  color: #fff;
+  transform: scale(1.1);
+}
