@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { DocumentData } from 'firebase/firestore';
 
 import Item from '../Item/Item';
-import { randomData } from '../../utils/data';
+import { randomData } from '../../utils/randomData';
+
 import './Card.css';
 
 const Card = () => {
@@ -30,22 +31,25 @@ const Card = () => {
   const askNewData = () => fetchData();
   const handleClick = () => setShowAnswer(!showAnswer);
 
-  if (isLoading) return <div className="loading" />;
+  if (isLoading)
+    return (
+      <main className="container-loading">
+        <div className="loading" />
+      </main>
+    );
 
   return (
-    <main>
-      <div className="question-container" onClick={handleClick}>
-        {!showAnswer ? (
-          <Item name="front" data={data} />
-        ) : (
-          <Item
-            name="back"
-            data={data}
-            handleClick={askNewData}
-            isBack={showAnswer}
-          />
-        )}
-      </div>
+    <main className="container-items" onClick={handleClick}>
+      {!showAnswer ? (
+        <Item name="front" data={data} />
+      ) : (
+        <Item
+          name="back"
+          data={data}
+          handleClick={askNewData}
+          isBack={showAnswer}
+        />
+      )}
     </main>
   );
 };
