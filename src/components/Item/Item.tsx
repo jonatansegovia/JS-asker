@@ -2,7 +2,7 @@ import { DocumentData } from 'firebase/firestore/lite';
 
 interface Item {
   isBack?: boolean;
-  data: DocumentData | undefined;
+  data: DocumentData | undefined | string;
   name: string;
   handleClick?: () => void;
 }
@@ -12,4 +12,5 @@ const Item = ({ isBack, data, name, handleClick }: Item) => (
     {data && <h1>{isBack ? Object.values(data) : Object.keys(data)}</h1>}
   </div>
 );
+
 export default Item;
