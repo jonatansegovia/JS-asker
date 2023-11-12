@@ -9,9 +9,9 @@ export const FirebaseDB = getFirestore();
 
 export const getData = async () => {
   try {
-    const colRef = collection(FirebaseDB, 'data');
+    const collectionRef = collection(FirebaseDB, 'data');
 
-    const snapshot = await getDocs(colRef)
+    const snapshot = await getDocs(collectionRef)
       .then((collection) => collection)
       .catch((e) => console.log(e));
 
