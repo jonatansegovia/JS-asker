@@ -2,6 +2,9 @@
 .back-new {
   width: 80%;
   font-size: 2rem;
+  min-height: 165px;
+  padding: 1rem;
+  overflow: auto;
 }
 
 .front-new {
@@ -24,4 +27,12 @@
 
 label {
   font-size: 2rem;
+}
+
+@media (width < 400px) {
+  .back-new,
+  .front-new {
+    font-size: 1.5rem;
+    min-height: 120px;
+  }
 }
