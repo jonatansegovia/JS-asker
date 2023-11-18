@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+*::first-letter {
+  text-transform: uppercase;
+}
+
 html,
 body,
 #root,
