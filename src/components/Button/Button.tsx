@@ -1,5 +1,7 @@
 import { MouseEventHandler } from 'react';
 
+import Icon from '../Icon/Icon';
+
 import './Button.css';
 
 interface ButtonProps {
@@ -8,18 +10,10 @@ interface ButtonProps {
   message?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ handleClick, isEditing, message }) => {
-  const innerText = isEditing ? (
-    <span className="material-symbols-outlined">keyboard_backspace</span>
-  ) : (
-    <span className="material-symbols-outlined">credit_card_gear</span>
-  );
-
-  return (
-    <button className="button" onClick={handleClick}>
-      {message ? message : innerText}
-    </button>
-  );
-};
+const Button: React.FC<ButtonProps> = ({ handleClick, isEditing, message }) => (
+  <button className="button" onClick={handleClick}>
+    {message ? message : <Icon editing={isEditing} />}
+  </button>
+);
 
 export default Button;
