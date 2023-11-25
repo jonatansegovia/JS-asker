@@ -13,7 +13,10 @@ function App() {
 
   return (
     <div id="main">
-      <Button handleClick={handleClick} isEditing={editMode} />
+      <Button
+        handleClick={handleClick}
+        iconName={!editMode ? 'credit_card_gear' : 'keyboard_backspace'}
+      />
       {!editMode ? <Card /> : <NewCard />}
     </div>
   );
