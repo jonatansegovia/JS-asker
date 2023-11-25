@@ -1,8 +1,10 @@
-const Icon = ({ editing = false }) =>
-  editing ? (
-    <span className="material-symbols-outlined">keyboard_backspace</span>
-  ) : (
-    <span className="material-symbols-outlined">credit_card_gear</span>
-  );
+interface IconProps {
+  iconName?: string;
+}
+
+const Icon = ({ iconName }: IconProps) => {
+  console.log(iconName);
+  return <span className="material-symbols-outlined">{iconName}</span>;
+};
 
 export default Icon;
