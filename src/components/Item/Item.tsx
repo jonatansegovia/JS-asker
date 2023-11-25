@@ -1,15 +1,20 @@
 import { DocumentData } from 'firebase/firestore/lite';
 
+import './Item.styled.css';
+
 interface Item {
   isBack?: boolean;
-  data: DocumentData | undefined | string;
-  name: string;
+  data: DocumentData | undefined;
+  name: 'front' | 'back';
   handleClick?: () => void;
 }
 
 const Item = ({ isBack, data, name, handleClick }: Item) => (
   <div className={name} onClick={handleClick}>
-    {data && <h1>{isBack ? Object.values(data) : Object.keys(data)}</h1>}
+    {data && (
+      <p className="inner-text">{isBack ? data.answer : data.question}</p>
+    )}
+    <span className="material-symbols-outlined">edit_square</span>
   </div>
 );
 
