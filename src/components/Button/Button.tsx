@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ handleClick, iconName, message }) => (
-  <button className="button" onClick={handleClick}>
+  <button className={message ? 'msg-button' : 'button'} onClick={handleClick}>
     {message ? message : <Icon iconName={iconName} />}
   </button>
 );
