@@ -13,43 +13,6 @@
   transform: rotateY(180deg);
 }
 
-.container-items .front,
-.container-items .back {
-  backface-visibility: hidden;
-  padding: 1rem;
-  width: 100%;
-}
-
-.container-items .front {
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  border: 2px solid #3498db;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  color: #333;
-  max-width: 1000px;
-  text-align: center;
-}
-
-.container-items .back {
-  align-items: center;
-  background-color: rgb(64, 143, 255);
-  border-radius: 10px;
-  border: 2px solid #3498db;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  color: rgb(255, 255, 255);
-  display: flex;
-  justify-content: center;
-  max-width: 1000px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (max-width: 400px) {
-  .container-items .back {
-    font-size: 12px;
-  }
-}
-
 .container-loading {
   align-items: center;
   display: flex;
