@@ -22,6 +22,7 @@ const Card = () => {
       .then((cardData) => {
         setData(cardData);
         setIsLoading(false);
+        setShowAnswer(false);
       })
       .catch((error) => {
         console.error('Error obtaining random data:', error);
@@ -41,7 +42,7 @@ const Card = () => {
   return (
     <main className="container-items" onClick={handleClick}>
       {!showAnswer ? (
-        <Item name="front" data={data} />
+        <Item name="front" data={data} handleClick={handleClick} />
       ) : (
         <Item
           name="back"
