@@ -9,17 +9,20 @@ export const FirebaseDB = getFirestore();
 
 export const getData = async () => {
   try {
-    const collectionRef = collection(FirebaseDB, 'data');
+    const collectionRef = collection(FirebaseDB, 'qaCollection');
 
     const snapshot = await getDocs(collectionRef)
       .then((collection) => collection)
       .catch((e) => console.log(e));
 
-    const data: DocumentData[] | undefined = snapshot?.docs.map((doc) =>
-      doc.data()
-    );
+    const card: DocumentData[] | undefined = snapshot?.docs.map((doc) => {
+      const qa = doc.data();
+      const card = { ...qa, id: doc.id };
 
-    return data;
+      return card;
+    });
+
+    return card;
   } catch (error) {
     console.error('There was an error:', error);
 
