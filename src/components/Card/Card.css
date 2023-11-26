@@ -4,13 +4,7 @@
   height: 100%;
   justify-content: center;
   margin: 0 1rem;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
   word-wrap: break-word;
-}
-
-.container-items:active {
-  transform: rotateY(180deg);
 }
 
 .container-loading {
