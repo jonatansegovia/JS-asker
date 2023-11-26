@@ -22,26 +22,26 @@
 .back .inner-area:focus-visible,
 .front .inner-area:focus-visible {
   background: linear-gradient(45deg, #c3c3c3, #696868);
-  border: 2px solid #f7003f;
+  background: #e6ffe6; /* Cambia este color al que prefieras */
+  border: 2px solid #4caf50; /* Puedes mantener o cambiar este color */
+  color: #008000;
   border-radius: 4px;
-  color: #ffffff;
   outline: none;
   min-height: 10rem;
   padding: 1rem;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #dbfedc;
   border-radius: 5px;
-  border: 0.1px solid gray;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #22c722;
   border-radius: 5px;
 }
 
