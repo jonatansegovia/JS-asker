@@ -1,19 +1,17 @@
-import { DocumentData } from 'firebase/firestore/lite';
-
 import Icon from '../Icon/Icon';
 
 import './Item.styled.css';
 
 interface Item {
-  isBack?: boolean;
-  data?: DocumentData | undefined;
-  name: 'front' | 'back';
+  edit: boolean;
   handleClick?: () => void;
+  isBack?: boolean;
+  name: string;
+  text: string;
 }
-
-const Item = ({ isBack, data, name, handleClick }: Item) => (
+const Item = ({ text, edit, name, handleClick }: Item) => (
   <div className={name} onClick={handleClick}>
-    <p className="inner-text">{isBack ? data?.answer : data?.question}</p>
+    <p className="inner-text">{text}</p>
     <Icon iconName="edit_square" />
   </div>
 );
