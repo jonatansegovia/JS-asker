@@ -30,6 +30,16 @@
   width: 100%;
 }
 
+.front > textarea,
+.back > textarea {
+  background: inherit;
+  border: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
 .front .material-symbols-outlined,
 .back .material-symbols-outlined {
   font-size: 20px;
