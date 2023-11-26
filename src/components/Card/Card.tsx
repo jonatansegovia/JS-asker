@@ -50,6 +50,7 @@ const Card = () => {
           name="front"
           handleClick={!editMode ? handleClick : undefined}
           edit={editMode}
+          handleEditMode={setEditMode}
           text={text}
         />
       ) : (
@@ -58,6 +59,7 @@ const Card = () => {
           handleClick={!editMode ? askNewData : undefined}
           isBack={showAnswer}
           edit={editMode}
+          handleEditMode={setEditMode}
           text={text}
         />
       )}
