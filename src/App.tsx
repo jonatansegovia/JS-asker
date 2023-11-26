@@ -7,17 +7,17 @@ import NewCard from './components/NewCard/NewCard';
 import './App.css';
 
 function App() {
-  const [editMode, setEditMode] = useState(false);
+  const [createMode, setCreateMode] = useState(false);
 
-  const handleClick = () => setEditMode(!editMode);
+  const handleClick = () => setCreateMode(!createMode);
 
   return (
     <div id="main">
       <Button
         handleClick={handleClick}
-        iconName={!editMode ? 'credit_card_gear' : 'keyboard_backspace'}
+        iconName={!createMode ? 'credit_card_gear' : 'keyboard_backspace'}
       />
-      {!editMode ? <Card /> : <NewCard />}
+      {!createMode ? <Card /> : <NewCard />}
     </div>
   );
 }
