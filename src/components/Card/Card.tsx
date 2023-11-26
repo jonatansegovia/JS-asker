@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { DocumentData } from 'firebase/firestore';
 
+import { Context } from '../../provider/Context';
 import Item from '../Item/Item';
 import { randomData } from '../../utils/randomData';
 
@@ -10,6 +11,9 @@ const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [data, setData] = useState<DocumentData>();
   const [isLoading, setIsLoading] = useState(false);
+  const { editMode, setEditMode } = useContext(Context);
+
+  const text = showAnswer ? data?.answer : data?.question;
 
   useEffect(() => {
     fetchData();
@@ -40,15 +44,21 @@ const Card = () => {
     );
 
   return (
-    <main className="container-items" onClick={handleClick}>
+    <main className="container-items">
       {!showAnswer ? (
-        <Item name="front" data={data} handleClick={handleClick} />
+        <Item
+          name="front"
+          handleClick={!editMode ? handleClick : undefined}
+          edit={editMode}
+          text={text}
+        />
       ) : (
         <Item
           name="back"
-          data={data}
-          handleClick={askNewData}
+          handleClick={!editMode ? askNewData : undefined}
           isBack={showAnswer}
+          edit={editMode}
+          text={text}
         />
       )}
     </main>
