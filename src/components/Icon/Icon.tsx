@@ -11,15 +11,26 @@ interface IconProps {
 const Icon = ({ iconName }: IconProps) => {
   const { setEditMode, editMode } = useContext(Context);
 
-  const handleClick = (e: MouseEvent<HTMLSpanElement>) => {
-    if (iconName !== 'edit_square') return;
+  const isSave = iconName === 'save';
+  const isEdit = iconName === 'edit_square';
 
+  const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
-    setEditMode(!editMode);
+
+    if (isEdit || isSave) {
+      setEditMode(!editMode);
+
+      if (isSave) {
+        console.log('saved');
+      }
+    }
   };
 
   return (
-    <span className="material-symbols-outlined" onClick={(e) => handleClick(e)}>
+    <span
+      className={`material-symbols-outlined ${isSave ? 'save' : ''}`}
+      onClick={handleClick}
+    >
       {iconName}
     </span>
   );

@@ -28,7 +28,7 @@ const Item = ({ edit, name, handleClick, handleEditMode, text }: Item) => {
     <div className={name} onClick={handleClick}>
       {edit ? (
         <textarea
-          className="inner-text"
+          className="inner-area"
           disabled={!edit}
           onChange={(e) => setInnerText(e.target.value)}
           onBlur={() => handleEditMode(!edit)}
@@ -44,7 +44,8 @@ const Item = ({ edit, name, handleClick, handleEditMode, text }: Item) => {
           {innerText}
         </p>
       )}
-      <Icon iconName="edit_square" />
+      <Icon iconName={'edit_square'} />
+      {edit && <Icon iconName={'save'} />}
     </div>
   );
 };
