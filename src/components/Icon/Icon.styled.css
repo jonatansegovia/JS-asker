@@ -1,0 +1,7 @@
+.material-symbols-outlined {
+  transition: color 0.2s ease-in-out;
+}
+
+.material-symbols-outlined:hover {
+  color: gray;
+}
