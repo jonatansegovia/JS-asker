@@ -1,19 +1,17 @@
 import { useEffect, useState, useContext } from 'react';
-import { DocumentData } from 'firebase/firestore';
+import { DocumentData } from 'firebase/firestore/lite';
 
 import { Context } from '../../provider/Context';
-import Item from '../Item/Item';
 import { randomData } from '../../utils/randomData';
+import Item from '../Item/Item';
 
 import './Card.css';
 
 const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [data, setData] = useState<DocumentData>();
+  const [data, setData] = useState<DocumentData | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const { editMode, setEditMode } = useContext(Context);
-
-  const text = showAnswer ? data?.answer : data?.question;
 
   useEffect(() => {
     fetchData();
@@ -24,9 +22,9 @@ const Card = () => {
 
     randomData()
       .then((cardData) => {
-        setData(cardData);
         setIsLoading(false);
         setShowAnswer(false);
+        setData(cardData);
       })
       .catch((error) => {
         console.error('Error obtaining random data:', error);
@@ -42,27 +40,23 @@ const Card = () => {
         <div className="loading" />
       </main>
     );
-
+  console.log(data);
   return (
-    <main className="container-items">
-      {!showAnswer ? (
-        <Item
-          name="front"
-          handleClick={!editMode ? handleClick : undefined}
-          edit={editMode}
-          handleEditMode={setEditMode}
-          text={text}
-        />
-      ) : (
-        <Item
-          name="back"
-          handleClick={!editMode ? askNewData : undefined}
-          isBack={showAnswer}
-          edit={editMode}
-          handleEditMode={setEditMode}
-          text={text}
-        />
-      )}
+    <main
+      className="container-items"
+      onClick={() => !editMode && handleClick()}
+    >
+      <Item
+        name={showAnswer ? 'back' : 'front'}
+        handleClick={
+          !editMode ? (showAnswer ? askNewData : handleClick) : undefined
+        }
+        edit={editMode}
+        text={showAnswer ? data?.answer : data?.question}
+        setData={setData}
+        showAnswer={showAnswer}
+        data={data}
+      />
     </main>
   );
 };
