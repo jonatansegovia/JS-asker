@@ -4,13 +4,12 @@ import EditArea from '../EditArea/EditArea';
 import Icon from '../Icon/Icon';
 import './Item.styled.css';
 
-interface Item {
+interface ItemProps {
   edit: boolean;
   handleClick?: () => void;
   name: string;
   showAnswer: boolean;
   setData: (text: DocumentData) => void;
-  text: string;
   data: DocumentData | undefined;
 }
 
@@ -21,29 +20,28 @@ const Item = ({
   setData,
   data,
   showAnswer,
-  text,
-}: Item) => {
-  return (
-    <div className={name} onClick={handleClick}>
-      {edit ? (
-        <EditArea
-          name={showAnswer ? 'answer' : 'question'}
-          edit={edit}
-          handleData={setData}
-          cardData={data}
-        />
-      ) : (
+}: ItemProps) => (
+  <div className={name} onClick={handleClick}>
+    {edit ? (
+      <EditArea
+        name={showAnswer ? 'answer' : 'question'}
+        edit={edit}
+        handleData={setData}
+        cardData={data}
+      />
+    ) : (
+      <>
         <p
           className="inner-text"
           contentEditable={edit}
           suppressContentEditableWarning
         >
-          {text}
+          {showAnswer ? data?.answer : data?.question}
         </p>
-      )}
-      <Icon iconName={'edit_square'} />
-    </div>
-  );
-};
+        <Icon iconName={'edit_square'} />
+      </>
+    )}
+  </div>
+);
 
 export default Item;

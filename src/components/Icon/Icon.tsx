@@ -17,12 +17,13 @@ const Icon = ({ iconName }: IconProps) => {
   const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
 
-    if (isEdit || isSave) {
+    if (isEdit) {
       setEditMode(!editMode);
+    }
 
-      if (isSave) {
-        console.log('saved');
-      }
+    if (isSave) {
+      console.log('saved');
+      setEditMode(!editMode);
     }
   };
 
