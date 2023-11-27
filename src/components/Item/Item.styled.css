@@ -6,31 +6,6 @@
   width: 100%;
 }
 
-.front > .inner-area,
-.back > .inner-area {
-  background: inherit;
-  border: none;
-  color: inherit;
-  display: block;
-  font-size: 24px;
-  padding: 1rem;
-  resize: none;
-  text-align: center;
-  width: 100%;
-}
-
-.back .inner-area:focus-visible,
-.front .inner-area:focus-visible {
-  background: linear-gradient(45deg, #c3c3c3, #696868);
-  background: #e6ffe6; /* Cambia este color al que prefieras */
-  border: 2px solid #4caf50; /* Puedes mantener o cambiar este color */
-  color: #008000;
-  border-radius: 4px;
-  outline: none;
-  min-height: 10rem;
-  padding: 1rem;
-}
-
 ::-webkit-scrollbar {
   width: 8px;
 }
