@@ -1,39 +1,36 @@
-import { useEffect, useRef, useState } from 'react';
+import { DocumentData } from 'firebase/firestore/lite';
 
+import EditArea from '../EditArea/EditArea';
 import Icon from '../Icon/Icon';
-
 import './Item.styled.css';
 
 interface Item {
   edit: boolean;
   handleClick?: () => void;
-  isBack?: boolean;
   name: string;
-  handleEditMode: (mode: boolean) => void;
+  showAnswer: boolean;
+  setData: (text: DocumentData) => void;
   text: string;
+  data: DocumentData | undefined;
 }
-const Item = ({ edit, name, handleClick, handleEditMode, text }: Item) => {
-  const [innerText, setInnerText] = useState(text);
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  useEffect(() => {
-    if (edit && textareaRef.current) {
-      const textLength = textareaRef.current.value.length;
-      textareaRef.current.setSelectionRange(textLength, textLength);
-      textareaRef.current.focus();
-    }
-  }, [edit]);
-
+const Item = ({
+  edit,
+  name,
+  handleClick,
+  setData,
+  data,
+  showAnswer,
+  text,
+}: Item) => {
   return (
     <div className={name} onClick={handleClick}>
       {edit ? (
-        <textarea
-          className="inner-area"
-          disabled={!edit}
-          onChange={(e) => setInnerText(e.target.value)}
-          onBlur={() => handleEditMode(!edit)}
-          ref={textareaRef}
-          value={innerText}
+        <EditArea
+          name={showAnswer ? 'answer' : 'question'}
+          edit={edit}
+          handleData={setData}
+          cardData={data}
         />
       ) : (
         <p
@@ -41,11 +38,10 @@ const Item = ({ edit, name, handleClick, handleEditMode, text }: Item) => {
           contentEditable={edit}
           suppressContentEditableWarning
         >
-          {innerText}
+          {text}
         </p>
       )}
       <Icon iconName={'edit_square'} />
-      {edit && <Icon iconName={'save'} />}
     </div>
   );
 };
