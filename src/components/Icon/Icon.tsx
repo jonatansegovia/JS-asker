@@ -1,36 +1,22 @@
-import { useContext } from 'react';
-
-import { Context } from '../../provider/Context';
+import { MouseEvent } from 'react';
 
 import './Icon.styled.css';
 
 interface IconProps {
+  handleClick: (e: MouseEvent<HTMLSpanElement>) => void;
   iconName?: string;
 }
 
-const Icon = ({ iconName }: IconProps) => {
-  const { setEditMode, editMode } = useContext(Context);
-
-  const isSave = iconName === 'save';
-  const isEdit = iconName === 'edit_square';
-
-  const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
-    e.stopPropagation();
-
-    if (isEdit) {
-      setEditMode(!editMode);
-    }
-
-    if (isSave) {
-      console.log('saved');
-      setEditMode(!editMode);
-    }
-  };
-
+const Icon = ({ handleClick, iconName = 'save' }: IconProps) => {
   return (
     <span
-      className={`material-symbols-outlined ${isSave ? 'save' : ''}`}
-      onClick={handleClick}
+      className={`material-symbols-outlined ${
+        iconName === 'save' ? 'save' : ''
+      }`}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick(e);
+      }}
     >
       {iconName}
     </span>
