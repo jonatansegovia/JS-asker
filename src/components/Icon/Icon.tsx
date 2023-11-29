@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import './Icon.styled.css';
 
 interface IconProps {
-  handleClick: (e: MouseEvent<HTMLSpanElement>) => void;
+  handleClick?: (e: MouseEvent<HTMLSpanElement>) => void;
   iconName?: string;
 }
 
@@ -15,7 +15,7 @@ const Icon = ({ handleClick, iconName = 'save' }: IconProps) => {
       }`}
       onClick={(e) => {
         e.stopPropagation();
-        handleClick(e);
+        handleClick?.(e);
       }}
     >
       {iconName}
