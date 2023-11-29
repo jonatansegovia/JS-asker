@@ -1,17 +1,21 @@
 import { createContext, ReactNode, useState } from 'react';
 
 interface ContextProps {
-  editMode: boolean;
-  setEditMode: (mode: boolean) => void;
   darkMode: boolean;
+  editMode: boolean;
+  id: string;
   setDarkMode: (mode: boolean) => void;
+  setEditMode: (mode: boolean) => void;
+  setId: (id: string) => void;
 }
 
 const initialContextValues: ContextProps = {
-  editMode: false,
-  setEditMode: () => {},
   darkMode: false,
+  editMode: false,
+  id: '',
   setDarkMode: () => {},
+  setEditMode: () => {},
+  setId: () => {},
 };
 
 export const Context = createContext<ContextProps>(initialContextValues);
@@ -19,8 +23,16 @@ export const Context = createContext<ContextProps>(initialContextValues);
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [editMode, setEditMode] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [id, setId] = useState('');
 
-  const values: ContextProps = { editMode, setEditMode, darkMode, setDarkMode };
+  const values: ContextProps = {
+    darkMode,
+    editMode,
+    id,
+    setDarkMode,
+    setEditMode,
+    setId,
+  };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
