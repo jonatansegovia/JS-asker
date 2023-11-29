@@ -40,7 +40,7 @@ const Card = () => {
         <div className="loading" />
       </main>
     );
-  console.log(data);
+
   return (
     <main
       className="container-items"
@@ -52,8 +52,8 @@ const Card = () => {
           !editMode ? (showAnswer ? askNewData : handleClick) : undefined
         }
         edit={editMode}
-        text={showAnswer ? data?.answer : data?.question}
         setData={setData}
+        setEditMode={setEditMode}
         showAnswer={showAnswer}
         data={data}
       />

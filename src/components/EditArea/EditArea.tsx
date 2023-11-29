@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { DocumentData } from 'firebase/firestore/lite';
 
+import { Context } from '../../provider/Context';
+import { updateData } from '../../utils/updateData';
 import Icon from '../Icon/Icon';
 
 import './EditArea.styled.css';
@@ -13,6 +15,7 @@ interface EditAreaProps {
 }
 
 const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
+  const { setEditMode, editMode } = useContext(Context);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
@@ -22,6 +25,11 @@ const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
       textareaRef.current.focus();
     }
   }, [edit]);
+
+  const handleDBupdate = () => {
+    updateData(cardData.id, { [name]: cardData[name] });
+    setEditMode(!editMode);
+  };
 
   return (
     <>
@@ -35,7 +43,7 @@ const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
         ref={textareaRef}
         value={cardData[name]}
       />
-      <Icon iconName={'save'} />
+      <Icon handleClick={handleDBupdate} />
     </>
   );
 };
