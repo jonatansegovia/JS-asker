@@ -10,6 +10,7 @@ interface ItemProps {
   name: string;
   showAnswer: boolean;
   setData: (text: DocumentData) => void;
+  setEditMode: (mode: boolean) => void;
   data: DocumentData | undefined;
 }
 
@@ -18,6 +19,7 @@ const Item = ({
   name,
   handleClick,
   setData,
+  setEditMode,
   data,
   showAnswer,
 }: ItemProps) => (
@@ -38,7 +40,7 @@ const Item = ({
         >
           {showAnswer ? data?.answer : data?.question}
         </p>
-        <Icon iconName={'edit_square'} />
+        <Icon iconName={'edit_square'} handleClick={() => setEditMode(!edit)} />
       </>
     )}
   </div>
