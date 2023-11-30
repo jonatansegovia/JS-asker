@@ -18,8 +18,8 @@
 .loading {
   animation: spin 1s linear infinite;
   border-radius: 50%;
-  border-top: 4px solid #007bff;
-  border: 4px solid rgba(0, 0, 0, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid var(--loading); /* Mover esta línea después de la definición general de border */
   display: block;
   height: 80px;
   width: 80px;
@@ -35,22 +35,22 @@
 }
 
 .front {
-  background-color: #f2f2f2;
+  background-color: var(--front-bg);
   border-radius: 10px;
-  border: 2px solid #3498db;
+  border: 2px solid var(--front-border);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  color: #333;
+  color: var(--primary-txt);
   max-width: 1000px;
   text-align: center;
 }
 
 .back {
   align-items: center;
-  background-color: rgb(64, 143, 255);
+  background-color: var(--back-bg);
   border-radius: 10px;
-  border: 2px solid #f2f2f2;
+  border: 2px solid var(--back-border);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  color: rgb(255, 255, 255);
+  color: var(--secondary-txt);
   display: flex;
   justify-content: center;
   max-width: 1000px;
