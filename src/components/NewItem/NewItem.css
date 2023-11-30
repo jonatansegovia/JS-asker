@@ -8,27 +8,27 @@
 }
 
 .front-new {
-  background-color: #f2f2f2;
+  background-color: var(--front-bg);
   border-radius: 10px;
-  border: 2px solid #3498db;
+  border: 2px solid var(--front-border);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  color: #333;
+  color: var(--primary-txt);
   text-align: center;
 }
 
 .back-new {
-  background-color: rgb(64, 143, 255);
+  background-color: var(--back-bg);
   border-radius: 10px;
-  border: 2px solid #3498db;
+  border: 2px solid var(--back-border);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  color: rgb(255, 255, 255);
+  color: var(--secondary-txt);
   text-align: center;
 }
 
 label {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: var(--secondary-txt);
 }
 
 @media (width < 400px) {
