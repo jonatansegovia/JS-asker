@@ -1,3 +1,24 @@
+:root {
+  --back-bg: #408fff;
+  --back-border: #f2f2f2;
+  --bg: white;
+  --front-bg: white;
+  --front-border: #3498db;
+  --loading: #007bff;
+  --primary-txt: black;
+  --secondary-txt: white;
+}
+
+.dark-theme {
+  --back-bg: #ff0071;
+  --back-border: #f2f2f2;
+  --bg: black;
+  --front-bg: #fcdeeb;
+  --front-border: #ff0071;
+  --loading: #ff0071;
+  --secondary-txt: white;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'monospace', 'Arial Narrow', Arial, sans-serif;
@@ -13,10 +34,20 @@ html,
 body,
 #root,
 #main {
+  background-color: var(--bg);
   width: 100%;
   height: 100%;
 }
 
 #main {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  display: flex;
+  height: fit-content;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 100%;
 }
