@@ -1,5 +1,19 @@
 .button {
-  background-color: #3498db;
+  background-color: var(--back-bg);
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s, color 0.3s;
+}
+
+.msg-button {
+  background-color: var(--back-bg);
   border-radius: 8px;
   border: none;
   color: #fff;
@@ -7,13 +21,9 @@
   display: block;
   font-size: 16px;
   padding: 15px 30px;
-  position: absolute;
   text-align: center;
   text-decoration: none;
-  top: 1rem;
-  left: 1rem;
   transition: all 0.3s, color 0.3s;
-  z-index: 1;
 }
 
 .button:hover,
@@ -21,20 +31,6 @@
   background-color: #9900ff;
   color: #fff;
   transform: scale(1.1);
-}
-
-.msg-button {
-  background-color: #3498db;
-  border-radius: 8px;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  display: block;
-  font-size: 16px;
-  padding: 15px 30px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s, color 0.3s;
 }
 
 @media (width < 400px) {
