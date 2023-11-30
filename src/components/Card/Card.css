@@ -62,7 +62,8 @@
 .back {
   backface-visibility: hidden;
   max-height: 30rem;
-  overflow: auto;
+  overflow-y: overlay;
+  overflow-x: hidden;
   padding: 1.8rem;
   position: relative;
   width: 100%;
