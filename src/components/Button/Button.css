@@ -9,7 +9,7 @@
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  transition: all 0.3s, color 0.3s;
+  transition: all 0.2s;
 }
 
 .msg-button {
@@ -23,13 +23,13 @@
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
-  transition: all 0.3s, color 0.3s;
+  transition: all 0.2s;
 }
 
 .button:hover,
 .msg-button:hover {
   background-color: #9900ff;
-  color: #fff;
+  color: gray;
   transform: scale(1.1);
 }
 

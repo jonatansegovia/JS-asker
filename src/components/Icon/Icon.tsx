@@ -14,7 +14,8 @@ const Icon = ({ handleClick, iconName = 'save' }: IconProps) => {
         iconName === 'save' ? 'save' : ''
       }`}
       onClick={(e) => {
-        e.stopPropagation();
+        (iconName === 'save' || iconName === 'edit_square') &&
+          e.stopPropagation();
         handleClick?.(e);
       }}
     >
