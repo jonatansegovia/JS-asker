@@ -13,7 +13,6 @@ function App() {
 
   const handleClick = () => setCreateMode(!createMode);
 
-  console.log('isdark', isDark);
   return (
     <div id="main" className={isDark ? 'dark-theme' : undefined}>
       <header className="btn-container">
