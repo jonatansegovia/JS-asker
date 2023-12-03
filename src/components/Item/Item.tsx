@@ -36,6 +36,7 @@ const Item = ({
         <p
           className="inner-text"
           contentEditable={edit}
+          data-testid="inner-text"
           suppressContentEditableWarning
         >
           {showAnswer ? data?.answer : data?.question}
