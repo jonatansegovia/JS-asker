@@ -4,6 +4,13 @@ import { Context } from './provider/Context';
 import Button from './components/Button/Button';
 import Card from './components/Card/Card';
 import NewCard from './components/NewCard/NewCard';
+import {
+  DARK_THEME,
+  EDIT_GEAR,
+  LEFT_ARROW,
+  MOON,
+  SUN,
+} from './utils/variables/general.js';
 
 import './App.css';
 
@@ -14,15 +21,15 @@ function App() {
   const handleClick = () => setCreateMode(!createMode);
 
   return (
-    <div id="main" className={isDark ? 'dark-theme' : undefined}>
+    <div id="main" className={isDark ? DARK_THEME : undefined}>
       <header className="btn-container">
         <Button
           handleClick={handleClick}
-          iconName={!createMode ? 'credit_card_gear' : 'keyboard_backspace'}
+          iconName={!createMode ? EDIT_GEAR : LEFT_ARROW}
         />
         <Button
           handleClick={() => setTheme(!isDark)}
-          iconName={isDark ? 'clear_night' : 'wb_sunny'}
+          iconName={isDark ? MOON : SUN}
         />
       </header>
       {!createMode ? <Card /> : <NewCard />}
