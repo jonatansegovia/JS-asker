@@ -1,5 +1,7 @@
 import { MouseEvent } from 'react';
 
+import { EDIT_PENCIL, SAVE } from '../../utils/variables/general';
+
 import './Icon.styled.css';
 
 interface IconProps {
@@ -7,15 +9,14 @@ interface IconProps {
   iconName?: string;
 }
 
-const Icon = ({ handleClick, iconName = 'save' }: IconProps) => {
+const Icon = ({ handleClick, iconName = SAVE }: IconProps) => {
   return (
     <span
       className={`material-symbols-outlined ${
-        iconName === 'save' ? 'save' : ''
+        iconName === SAVE ? SAVE : undefined
       }`}
       onClick={(e) => {
-        (iconName === 'save' || iconName === 'edit_square') &&
-          e.stopPropagation();
+        (iconName === SAVE || iconName === EDIT_PENCIL) && e.stopPropagation();
         handleClick?.(e);
       }}
     >
