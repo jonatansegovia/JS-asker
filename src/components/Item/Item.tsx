@@ -2,6 +2,7 @@ import { DocumentData } from 'firebase/firestore/lite';
 
 import EditArea from '../EditArea/EditArea';
 import Icon from '../Icon/Icon';
+import { EDIT_PENCIL } from '../../utils/variables/general';
 import './Item.styled.css';
 
 interface ItemProps {
@@ -41,7 +42,7 @@ const Item = ({
         >
           {showAnswer ? data?.answer : data?.question}
         </p>
-        <Icon iconName={'edit_square'} handleClick={() => setEditMode(!edit)} />
+        <Icon iconName={EDIT_PENCIL} handleClick={() => setEditMode(!edit)} />
       </>
     )}
   </div>
