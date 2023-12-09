@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@testing-library/user-event": "^14.5.1",
-    "@vitest/coverage-istanbul": "^1.0.2",
     "firebase": "^10.5.2",
     "istanbul": "^0.4.5",
     "jsdom": "^23.0.1",
@@ -31,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "@vitest/coverage-istanbul": "^1.0.2",
     "@vitest/ui": "^0.34.6",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
