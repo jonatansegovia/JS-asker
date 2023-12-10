@@ -44,7 +44,7 @@ describe('first', () => {
 
     await userEvent.click(card);
     await userEvent.type(card, someText);
-    screen.debug();
+
     expect(testHandleClick).toHaveBeenCalledTimes(someText.length);
   });
 });
