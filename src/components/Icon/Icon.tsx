@@ -12,8 +12,8 @@ interface IconProps {
 const Icon = ({ handleClick, iconName = SAVE }: IconProps) => {
   return (
     <span
-      className={`material-symbols-outlined ${
-        iconName === SAVE ? SAVE : undefined
+      className={`material-symbols-outlined${
+        iconName === SAVE ? ` ${SAVE}` : ''
       }`}
       onClick={(e) => {
         (iconName === SAVE || iconName === EDIT_PENCIL) && e.stopPropagation();
