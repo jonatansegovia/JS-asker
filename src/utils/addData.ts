@@ -11,7 +11,7 @@ const addData = ({ frontValue, backValue }: Data) => {
   const collectionRef = collection(FirebaseDB, 'data');
   const quiz = { [frontValue]: backValue };
 
-  addDoc(collectionRef, quiz).then((value) => alert(value));
+  addDoc(collectionRef, quiz).then(() => alert('Added!'));
 };
 
 export default addData;
