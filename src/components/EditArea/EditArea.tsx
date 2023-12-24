@@ -36,10 +36,7 @@ const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
       <textarea
         className={`inner-area ${name}`}
         disabled={!edit}
-        onChange={(e) => {
-          console.log(e.target.value);
-          handleData({ ...cardData, [name]: e.target.value });
-        }}
+        onChange={(e) => handleData({ ...cardData, [name]: e.target.value })}
         ref={textareaRef}
         value={cardData[name]}
       />
