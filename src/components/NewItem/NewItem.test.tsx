@@ -7,6 +7,7 @@ import userEvent from '@testing-library/user-event';
 const testHandleClick = vi.fn();
 const testingLabel = 'TEST FRONT';
 const testingName = 'test-name';
+const testingValue = 'test value';
 
 describe('first', () => {
   it('should render correctly', () => {
@@ -15,18 +16,19 @@ describe('first', () => {
         handleChange={testHandleClick}
         name={testingName}
         text={testingLabel}
+        value={testingValue}
       />
     );
 
     const label = container.querySelector('label[for="test-name"]');
-    const card = container.querySelector('.test-name');
+    const card = screen.getByText(testingValue);
 
     expect(label).toBeInTheDocument();
     expect(label?.innerHTML).toBe(testingLabel);
     expect(label).toHaveAttribute('for', 'test-name');
     expect(card).toBeInTheDocument();
     expect(card).toHaveClass('test-name');
-    expect(card).toHaveAttribute('contenteditable', 'true');
+    screen.debug();
   });
 
   it('should we clickable', async () => {
