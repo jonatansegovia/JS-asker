@@ -10,26 +10,36 @@ const NewCard = () => {
   const [frontValue, setValueFront] = useState('');
   const [backValue, setValueBack] = useState('');
 
-  const handleChangeFront = (e: ChangeEvent<HTMLDivElement>) =>
-    setValueFront(e.currentTarget.textContent || '');
-
-  const handleChangeBack = (e: ChangeEvent<HTMLDivElement>) =>
-    setValueBack(e.currentTarget.textContent || '');
-
+  const handleChangeFront = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    setValueFront(e.currentTarget.value);
+  const handleChangeBack = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    setValueBack(e.currentTarget.value);
   const handleSubmit = () => {
-    if (!frontValue || !backValue)
+    if (!frontValue || !backValue) {
       return alert('You should add values in both cards!');
+    }
 
-    confirm('Are you sure?') &&
-      frontValue &&
-      backValue &&
+    if (frontValue && backValue && confirm('Are you sure?')) {
       addData({ frontValue, backValue });
+      setValueBack('');
+      setValueFront('');
+    }
   };
 
   return (
     <main className="container-newitems">
-      <NewItem handleChange={handleChangeFront} name="front-new" text="Front" />
-      <NewItem handleChange={handleChangeBack} name="back-new" text="Back" />
+      <NewItem
+        handleChange={handleChangeFront}
+        name="front-new"
+        text="Front"
+        value={frontValue}
+      />
+      <NewItem
+        handleChange={handleChangeBack}
+        name="back-new"
+        text="Back"
+        value={backValue}
+      />
       <Button handleClick={handleSubmit} message="Submit" />
     </main>
   );
