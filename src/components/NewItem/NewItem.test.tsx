@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import NewItem from './NewItem';
 import userEvent from '@testing-library/user-event';
 
-const testHandleClick = vi.fn();
+const testHandleChange = vi.fn();
 const testingLabel = 'TEST FRONT';
 const testingName = 'test-name';
 const testingValue = 'test value';
@@ -13,7 +13,7 @@ describe('first', () => {
   it('should render correctly', () => {
     const { container } = render(
       <NewItem
-        handleChange={testHandleClick}
+        handleChange={testHandleChange}
         name={testingName}
         text={testingLabel}
         value={testingValue}
@@ -31,22 +31,23 @@ describe('first', () => {
     screen.debug();
   });
 
-  it('should we clickable', async () => {
+  it('should call change function', async () => {
+    const someText = 'some text';
+
     const { container } = render(
       <NewItem
-        handleChange={testHandleClick}
+        handleChange={testHandleChange}
         name={testingName}
         text={testingLabel}
+        value=""
       />
     );
-
-    const someText = 'some text';
 
     const card = container.querySelector('.test-name') as Element;
 
     await userEvent.click(card);
     await userEvent.type(card, someText);
 
-    expect(testHandleClick).toHaveBeenCalledTimes(someText.length);
+    expect(testHandleChange).toHaveBeenCalledTimes(someText.length);
   });
 });
