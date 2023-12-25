@@ -1,21 +1,25 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { DocumentData } from 'firebase/firestore/lite';
 
-import { Context } from '../../provider/Context';
-import { updateData } from '../../utils/updateData';
 import Icon from '../Icon/Icon';
 
 import './EditArea.styled.css';
 
 interface EditAreaProps {
+  cardData: DocumentData | undefined;
   edit: boolean;
   handleData: (text: DocumentData) => void;
+  handleTextupdate: () => void;
   name: string;
-  cardData: DocumentData | undefined;
 }
 
-const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
-  const { setEditMode, editMode } = useContext(Context);
+const EditArea = ({
+  edit,
+  handleData,
+  name,
+  cardData = {},
+  handleTextupdate,
+}: EditAreaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
@@ -26,11 +30,6 @@ const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
     }
   }, [edit]);
 
-  const handleDBupdate = () => {
-    updateData(cardData.id, { [name]: cardData[name] });
-    setEditMode(!editMode);
-  };
-
   return (
     <>
       <textarea
@@ -40,7 +39,7 @@ const EditArea = ({ edit, handleData, name, cardData = {} }: EditAreaProps) => {
         ref={textareaRef}
         value={cardData[name]}
       />
-      <Icon handleClick={handleDBupdate} />
+      <Icon handleClick={handleTextupdate} />
     </>
   );
 };
