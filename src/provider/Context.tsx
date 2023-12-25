@@ -1,25 +1,29 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
 interface ContextProps {
-  isDark: boolean;
+  bannerVisible: boolean;
   editMode: boolean;
   id: string;
+  isDark: boolean;
   setBannerVisible: (visible: boolean) => void;
-  setTheme: (mode: boolean) => void;
   setEditMode: (mode: boolean) => void;
   setId: (id: string) => void;
-  bannerVisible: boolean;
+  setStatus: (status: string) => void;
+  setTheme: (mode: boolean) => void;
+  status: string;
 }
 
 const initialContextValues: ContextProps = {
-  isDark: true,
+  bannerVisible: false,
   editMode: false,
   id: '',
+  isDark: true,
   setBannerVisible: () => {},
-  setTheme: () => {},
   setEditMode: () => {},
   setId: () => {},
-  bannerVisible: false,
+  setTheme: () => {},
+  setStatus: () => {},
+  status: '',
 };
 
 export const Context = createContext<ContextProps>(initialContextValues);
@@ -29,22 +33,25 @@ export const Provider = ({ children }: { children: ReactNode }) => {
   const [isDark, setTheme] = useState(true);
   const [id, setId] = useState('');
   const [bannerVisible, setBannerVisible] = useState(false);
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     if (bannerVisible) {
       setTimeout(() => setBannerVisible(false), 3000);
     }
   }, [bannerVisible]);
-
+  console.log(bannerVisible, status);
   const values: ContextProps = {
+    bannerVisible,
     editMode,
     id,
     isDark,
     setBannerVisible,
     setEditMode,
     setId,
+    setStatus,
     setTheme,
-    bannerVisible,
+    status,
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
