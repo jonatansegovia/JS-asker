@@ -28,7 +28,8 @@ const NewCard = () => {
 
   const handleSubmit = () => {
     if (!frontValue || !backValue) {
-      alert('You should add values in both cards!');
+      setBannerVisible(true);
+      setStatus('warning');
     }
 
     if (frontValue && backValue && confirm('Are you sure?')) {
