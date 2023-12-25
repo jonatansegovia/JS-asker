@@ -11,8 +11,8 @@ import Banner from '../Banner/Banner';
 const NewCard = () => {
   const [frontValue, setValueFront] = useState('');
   const [backValue, setValueBack] = useState('');
-  const [status, setStatus] = useState('');
-  const { bannerVisible, setBannerVisible } = useContext(Context);
+  const { bannerVisible, setBannerVisible, setStatus, status } =
+    useContext(Context);
 
   useEffect(() => {
     if (status === 'success') {
