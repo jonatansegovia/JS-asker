@@ -2,8 +2,10 @@ import { useEffect, useState, useContext } from 'react';
 import { DocumentData } from 'firebase/firestore/lite';
 
 import { Context } from '../../provider/Context';
+import { updateData } from '../../utils/updateData';
 import { randomData } from '../../utils/randomData';
 import Item from '../Item/Item';
+import Banner from '../Banner/Banner';
 
 import './Card.css';
 
@@ -11,7 +13,14 @@ const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [data, setData] = useState<DocumentData | undefined>();
   const [isLoading, setIsLoading] = useState(false);
-  const { editMode, setEditMode } = useContext(Context);
+  const {
+    bannerVisible,
+    editMode,
+    setBannerVisible,
+    setEditMode,
+    setStatus,
+    status,
+  } = useContext(Context);
 
   useEffect(() => {
     fetchData();
@@ -33,6 +42,14 @@ const Card = () => {
 
   const askNewData = () => fetchData();
   const handleClick = () => setShowAnswer(!showAnswer);
+  const handleTextupdate = () => {
+    if (data) {
+      const name = showAnswer ? 'answer' : 'question';
+
+      updateData(data.id, { [name]: data[name] }, setBannerVisible, setStatus);
+      setEditMode(!editMode);
+    }
+  };
 
   if (isLoading)
     return (
@@ -46,12 +63,14 @@ const Card = () => {
       className="container-items"
       onClick={() => !editMode && handleClick()}
     >
+      <Banner type={status} visible={bannerVisible} />
       <Item
         name={showAnswer ? 'back' : 'front'}
         handleClick={
           !editMode ? (showAnswer ? askNewData : handleClick) : undefined
         }
         edit={editMode}
+        handleTextupdate={handleTextupdate}
         setData={setData}
         setEditMode={setEditMode}
         showAnswer={showAnswer}
