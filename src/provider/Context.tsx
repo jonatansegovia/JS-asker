@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
 interface ContextProps {
   bannerVisible: boolean;
@@ -35,12 +35,6 @@ export const Provider = ({ children }: { children: ReactNode }) => {
   const [bannerVisible, setBannerVisible] = useState(false);
   const [status, setStatus] = useState('');
 
-  useEffect(() => {
-    if (bannerVisible) {
-      setTimeout(() => setBannerVisible(false), 3000);
-    }
-  }, [bannerVisible]);
-  console.log(bannerVisible, status);
   const values: ContextProps = {
     bannerVisible,
     editMode,
