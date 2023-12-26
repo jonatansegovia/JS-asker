@@ -13,14 +13,8 @@ const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [data, setData] = useState<DocumentData | undefined>();
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    bannerVisible,
-    editMode,
-    setBannerVisible,
-    setEditMode,
-    setStatus,
-    status,
-  } = useContext(Context);
+  const { editMode, setBannerVisible, setEditMode, setStatus } =
+    useContext(Context);
 
   useEffect(() => {
     fetchData();
@@ -63,7 +57,7 @@ const Card = () => {
       className="container-items"
       onClick={() => !editMode && handleClick()}
     >
-      <Banner type={status} visible={bannerVisible} />
+      <Banner />
       <Item
         name={showAnswer ? 'back' : 'front'}
         handleClick={
