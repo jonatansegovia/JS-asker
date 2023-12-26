@@ -33,27 +33,17 @@
 }
 
 .show {
-  animation: showBanner 3s forwards;
-}
-
-.hide {
-  animation: hideBanner 3s forwards;
+  animation: showBanner 5s ease-out;
 }
 
 @keyframes showBanner {
   0% {
     opacity: 0;
   }
-  100% {
+  10% {
     opacity: 1;
   }
-}
-
-@keyframes hideBanner {
-  0% {
+  50% {
     opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
