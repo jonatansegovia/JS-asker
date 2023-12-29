@@ -60,11 +60,12 @@
 
 .front,
 .back {
-  backface-visibility: hidden;
+  align-items: normal;
+  display: flex;
   max-height: 30rem;
   overflow-y: overlay;
   overflow-x: hidden;
-  padding: 1.8rem;
+  padding: 1rem 1.8rem 1rem 1rem;
   position: relative;
   width: 100%;
 }
