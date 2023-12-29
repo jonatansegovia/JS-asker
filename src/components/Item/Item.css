@@ -1,7 +1,6 @@
 .front > .inner-text,
 .back > .inner-text {
   font-size: 24px;
-  /* margin-top: 1.8rem; */
   max-height: inherit;
   text-align: center;
   width: 100%;

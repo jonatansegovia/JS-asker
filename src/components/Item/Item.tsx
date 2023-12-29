@@ -3,7 +3,7 @@ import { DocumentData } from 'firebase/firestore/lite';
 import EditArea from '../EditArea/EditArea';
 import InnerText from '../InnerText/InnerText';
 
-import './Item.styled.css';
+import './Item.css';
 
 interface ItemProps {
   data: DocumentData | undefined;

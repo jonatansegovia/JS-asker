@@ -29,8 +29,10 @@ const Card = () => {
         setShowAnswer(false);
         setData(cardData);
       })
-      .catch((error) => {
-        console.error('Error obtaining random data:', error);
+      .catch(() => {
+        setIsLoading(false);
+        setStatus('error');
+        setBannerVisible(true);
       });
   };
 

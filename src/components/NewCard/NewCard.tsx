@@ -5,8 +5,9 @@ import addData from '../../utils/addData';
 import Button from '../Button/Button';
 import { Context } from '../../provider/Context';
 
-import './NewCard.css';
 import Banner from '../Banner/Banner';
+
+import './NewCard.css';
 
 const NewCard = () => {
   const [frontValue, setValueFront] = useState('');
