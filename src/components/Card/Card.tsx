@@ -25,6 +25,18 @@ const Card = () => {
 
     randomData()
       .then((cardData) => {
+        if (
+          Object.keys(cardData as object).length === 0 ||
+          (!cardData?.answer && !cardData?.question)
+        ) {
+          setIsLoading(false);
+          setStatus('error');
+          setBannerVisible(true);
+          setData({});
+
+          return;
+        }
+
         setIsLoading(false);
         setShowAnswer(false);
         setData(cardData);
@@ -33,6 +45,7 @@ const Card = () => {
         setIsLoading(false);
         setStatus('error');
         setBannerVisible(true);
+        setData({});
       });
   };
 
@@ -59,19 +72,25 @@ const Card = () => {
       className="container-items"
       onClick={() => !editMode && handleClick()}
     >
-      <Banner />
-      <Item
-        name={showAnswer ? 'back' : 'front'}
-        handleClick={
-          !editMode ? (showAnswer ? askNewData : handleClick) : undefined
-        }
-        edit={editMode}
-        handleTextupdate={handleTextupdate}
-        setData={setData}
-        setEditMode={setEditMode}
-        showAnswer={showAnswer}
-        data={data}
-      />
+      <>
+        <Banner />
+        {data?.answer && data?.question ? (
+          <Item
+            name={showAnswer ? 'back' : 'front'}
+            handleClick={
+              !editMode ? (showAnswer ? askNewData : handleClick) : undefined
+            }
+            edit={editMode}
+            handleTextupdate={handleTextupdate}
+            setData={setData}
+            setEditMode={setEditMode}
+            showAnswer={showAnswer}
+            data={data}
+          />
+        ) : (
+          <div style={{ color: 'wheat' }}>NOTHING TO SHOW FOR THE MOMENT</div>
+        )}
+      </>
     </main>
   );
 };
