@@ -26,31 +26,18 @@
   transition: all 0.2s;
 }
 
-.button:hover,
-.msg-button:hover {
+.button:active,
+.msg-button:active {
   background-color: #9900ff;
-  color: gray;
   transform: scale(1.1);
+}
+
+.button span:hover {
+  color: #fff;
 }
 
 @media (width < 400px) {
   .button {
     padding: 10px 25px;
-  }
-
-  .button:hover {
-    background-color: var(--back-bg);
-    transform: none;
-  }
-
-  .button span:hover {
-    background-color: var(--back-bg);
-    transform: none;
-    color: #fff;
-  }
-
-  .msg-button:hover {
-    background-color: var(--back-bg);
-    color: #fff;
   }
 }
