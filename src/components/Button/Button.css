@@ -37,4 +37,15 @@
   .button {
     padding: 10px 25px;
   }
+
+  .button:hover {
+    background-color: var(--back-bg);
+    transform: none;
+  }
+
+  .button span:hover {
+    background-color: var(--back-bg);
+    transform: none;
+    color: #fff;
+  }
 }
