@@ -71,6 +71,7 @@ const Card = () => {
     <main
       className="container-items"
       onClick={() => !editMode && handleClick()}
+      onTouchStart={() => !editMode && handleClick()}
     >
       <>
         <Banner />
