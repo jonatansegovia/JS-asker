@@ -48,4 +48,9 @@
     transform: none;
     color: #fff;
   }
+
+  .msg-button:hover {
+    background-color: var(--back-bg);
+    color: #fff;
+  }
 }
