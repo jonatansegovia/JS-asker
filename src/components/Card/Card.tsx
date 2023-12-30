@@ -18,6 +18,7 @@ const Card = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = () => {
@@ -29,12 +30,7 @@ const Card = () => {
           Object.keys(cardData as object).length === 0 ||
           (!cardData?.answer && !cardData?.question)
         ) {
-          setIsLoading(false);
-          setStatus('error');
-          setBannerVisible(true);
-          setData({});
-
-          return;
+          handleError();
         }
 
         setIsLoading(false);
@@ -42,10 +38,7 @@ const Card = () => {
         setData(cardData);
       })
       .catch(() => {
-        setIsLoading(false);
-        setStatus('error');
-        setBannerVisible(true);
-        setData({});
+        handleError();
       });
   };
 
@@ -59,6 +52,12 @@ const Card = () => {
       setEditMode(!editMode);
     }
   };
+  const handleError = () => {
+    setIsLoading(false);
+    setStatus('error');
+    setBannerVisible(true);
+    setData({});
+  };
 
   if (isLoading)
     return (
@@ -70,7 +69,6 @@ const Card = () => {
   return (
     <main
       className="container-items"
-      onClick={() => !editMode && handleClick()}
       onTouchStart={() => !editMode && handleClick()}
     >
       <>
@@ -89,7 +87,9 @@ const Card = () => {
             data={data}
           />
         ) : (
-          <div style={{ color: 'wheat' }}>NOTHING TO SHOW FOR THE MOMENT</div>
+          <div style={{ color: 'wheat' }}>
+            NOTHING TO SHOW FOR THE MOMENT...
+          </div>
         )}
       </>
     </main>
