@@ -28,7 +28,6 @@ describe('first', () => {
     expect(label).toHaveAttribute('for', 'test-name');
     expect(card).toBeInTheDocument();
     expect(card).toHaveClass('test-name');
-    screen.debug();
   });
 
   it('should call change function', async () => {
