@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 
 import { EDIT_PENCIL, SAVE } from '../../utils/variables/general';
 
-import './Icon.styled.css';
+import './Icon.css';
 
 interface IconProps {
   handleClick?: (e: MouseEvent<HTMLSpanElement>) => void;
