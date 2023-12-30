@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { EDIT_PENCIL, SAVE } from '../../utils/variables/general';
 
 import Icon from './Icon';
+import userEvent from '@testing-library/user-event';
 
 describe('<Icon />', () => {
   const testHandleClick = vi.fn();
@@ -26,5 +27,19 @@ describe('<Icon />', () => {
 
     expect(pencilIcon).toBeInTheDocument();
     expect(pencilIcon.className).toBe(defaultClass);
+  });
+
+  it('should call click when touching the icon', async () => {
+    render(<Icon handleClick={testHandleClick} />);
+
+    const saveIcon = screen.getByText(SAVE);
+
+    await userEvent.click(saveIcon);
+
+    const event = testHandleClick.mock.calls[0][0];
+
+    expect(testHandleClick).toHaveBeenCalled();
+    expect(event.stopPropagation).toBeDefined();
+    expect(event.preventDefault).toBeDefined();
   });
 });
