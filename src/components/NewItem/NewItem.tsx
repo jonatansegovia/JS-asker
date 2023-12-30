@@ -12,7 +12,12 @@ interface NewItem {
 const NewItem = ({ handleChange, name, text, value }: NewItem) => (
   <>
     <label htmlFor={name}>{text}</label>
-    <textarea className={name} onChange={handleChange} value={value}></textarea>
+    <textarea
+      className={name}
+      id={name}
+      onChange={handleChange}
+      value={value}
+    ></textarea>
   </>
 );
 

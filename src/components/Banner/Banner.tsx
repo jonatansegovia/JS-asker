@@ -28,7 +28,11 @@ const Banner = () => {
   }, [bannerVisible, setBannerVisible]);
 
   return (
-    <div className={`banner ${status} ${bannerVisible && 'show'}`}>
+    <div
+      className={`banner ${status ? `${status}` : ''} ${
+        bannerVisible ? 'show' : ''
+      }`}
+    >
       {messages[status]}
     </div>
   );
