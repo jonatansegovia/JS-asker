@@ -69,7 +69,7 @@ const Card = () => {
   return (
     <main
       className="container-items"
-      onTouchStart={() => !editMode && handleClick()}
+      onClick={() => !editMode && handleClick()}
     >
       <>
         <Banner />
