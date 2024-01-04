@@ -11,52 +11,35 @@ import './Card.css';
 
 const Card = () => {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [data, setData] = useState<DocumentData | undefined>();
-  const [isLoading, setIsLoading] = useState(false);
-  const { editMode, setBannerVisible, setEditMode, setStatus } =
+  const [card, setCard] = useState<DocumentData | undefined>();
+  const [isLoading, setIsLoading] = useState(true);
+  const { cards, editMode, setBannerVisible, setEditMode, setStatus, status } =
     useContext(Context);
 
   useEffect(() => {
-    fetchData();
+    askNewData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cards]);
 
-  const fetchData = () => {
-    setIsLoading(true);
+  useEffect(() => {
+    setIsLoading(false);
+  }, [card]);
 
-    randomData()
-      .then((cardData) => {
-        if (
-          Object.keys(cardData as object).length === 0 ||
-          (!cardData?.answer && !cardData?.question)
-        ) {
-          handleError();
-        }
+  const askNewData = () => {
+    const card = randomData(cards);
 
-        setIsLoading(false);
-        setShowAnswer(false);
-        setData(cardData);
-      })
-      .catch(() => {
-        handleError();
-      });
+    setCard(card);
   };
 
-  const askNewData = () => fetchData();
   const handleClick = () => setShowAnswer(!showAnswer);
+
   const handleTextupdate = () => {
-    if (data) {
+    if (card) {
       const name = showAnswer ? 'answer' : 'question';
 
-      updateData(data.id, { [name]: data[name] }, setBannerVisible, setStatus);
+      updateData(card.id, { [name]: card[name] }, setBannerVisible, setStatus);
       setEditMode(!editMode);
     }
-  };
-  const handleError = () => {
-    setIsLoading(false);
-    setStatus('error');
-    setBannerVisible(true);
-    setData({});
   };
 
   if (isLoading)
@@ -73,7 +56,7 @@ const Card = () => {
     >
       <>
         <Banner />
-        {data?.answer && data?.question ? (
+        {card ? (
           <Item
             name={showAnswer ? 'back' : 'front'}
             handleClick={
@@ -81,15 +64,18 @@ const Card = () => {
             }
             edit={editMode}
             handleTextupdate={handleTextupdate}
-            setData={setData}
+            setData={setCard}
             setEditMode={setEditMode}
             showAnswer={showAnswer}
-            data={data}
+            data={card}
           />
         ) : (
-          <div style={{ color: 'wheat' }}>
-            NOTHING TO SHOW FOR THE MOMENT...
-          </div>
+          !card &&
+          status === 'error' && (
+            <div style={{ color: 'wheat' }}>
+              NOTHING TO SHOW FOR THE MOMENT...
+            </div>
+          )
         )}
       </>
     </main>
