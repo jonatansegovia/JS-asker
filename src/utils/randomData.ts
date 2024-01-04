@@ -1,9 +1,8 @@
-import { getData } from './getData';
+import { DocumentData } from 'firebase/firestore/lite';
 
-export const randomData = async () => {
-  const data = await getData();
-  const numberOfquestions = data?.length || 0;
+export const randomData = (cards: DocumentData | undefined) => {
+  const numberOfquestions = cards?.length || 0;
   const position = Math.floor(Math.random() * numberOfquestions);
 
-  return data && data[position];
+  return cards && cards[position];
 };
