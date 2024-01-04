@@ -1,7 +1,11 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { DocumentData } from 'firebase/firestore/lite';
+
+import { getData } from '../utils/getData';
 
 interface ContextProps {
   bannerVisible: boolean;
+  cards: DocumentData | undefined;
   editMode: boolean;
   id: string;
   isDark: boolean;
@@ -15,6 +19,7 @@ interface ContextProps {
 
 const initialContextValues: ContextProps = {
   bannerVisible: false,
+  cards: [],
   editMode: false,
   id: '',
   isDark: true,
@@ -29,14 +34,30 @@ const initialContextValues: ContextProps = {
 export const Context = createContext<ContextProps>(initialContextValues);
 
 export const Provider = ({ children }: { children: ReactNode }) => {
-  const [editMode, setEditMode] = useState(false);
-  const [isDark, setTheme] = useState(true);
-  const [id, setId] = useState('');
   const [bannerVisible, setBannerVisible] = useState(false);
+  const [cards, setCards] = useState<DocumentData | undefined>();
+  const [editMode, setEditMode] = useState(false);
+  const [id, setId] = useState('');
+  const [isDark, setTheme] = useState(true);
   const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    fetchCards();
+  }, []);
+
+  const fetchCards = async () => {
+    try {
+      const result = await getData();
+      setCards(result);
+    } catch (e) {
+      setStatus('error');
+      setBannerVisible(true);
+    }
+  };
 
   const values: ContextProps = {
     bannerVisible,
+    cards,
     editMode,
     id,
     isDark,
